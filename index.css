@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+html body {
+  background-image: url(Images/stars.jpg);
+  background-repeat: no-repeat;
+  background-size: 95% 95%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+header {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#title {
+  font-family: "Rajdhani", "Dosis", "Ubuntu", sans-serif;
+  text-decoration: none;
+  font-size: 30vw;
+  justify-content: flex-end;
+  width: 100%;
+  height: 30vw;
+  display: flex;
+  color: #0d6efd;
+}
+
+#title:hover {
+  color: white;
+}
+
+.slogan {
+  color: white;
+  font-size: 4vw;
+  font-family: "Dosis", "Ubuntu", sans-serif;
+  font-style: italic;
+  position: relative;
+  bottom: 5vw;
+  left: 5vw;
+}
+
+#logo {
+  width: 10%;
+  z-index: 0;
+  position: absolute;
+}
+
+.menu {
+  position: sticky;
+  top: 0px;
+  padding: 1vw;
+  opacity: 0.9;
+}
+
+.container-movie {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.movie-card {
+  width: 20%;
+  min-width: 15rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2px 16px;
+  margin: 0 0 1vw 0;
+  justify-content: space-evenly;
+}
+
+.card-image {
+  width: 100%;
+  border-radius: 8% 8% 0% 0%;
+  outline: 1px solid white;
+  outline-offset: -4px;
+}
+
+.movie-info {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border-radius: 0 0 8% 8%;
+  /* width: 20%; */
+  flex-wrap: wrap;
+  background-color: rgba(255, 255, 255, 0.8);
+  outline: 1px solid black;
+  outline-offset: -4px;
+}
+
+.movie-info i {
+  justify-content: center;
+}
+
+.card-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  opacity: 1;
+  margin: 0 1vw;
+}
+
+.card-title {
+  text-align: end;
+  padding: 1rem 0.5rem;
+}
+
+.colomn {
+  color: white;
+}
+
+.buttom-card {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1vw;
+}
+
+
