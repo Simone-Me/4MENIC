@@ -39,8 +39,6 @@ include 'api.php';
 
   $data = toGetDataTMBD($request, $api, $params);
 
-  //var_dump($data);
-
   $total_pages = $data['total_pages'];
 
   $_SESSION["total_pages"] = $total_pages;

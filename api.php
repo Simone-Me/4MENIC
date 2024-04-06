@@ -13,7 +13,8 @@ $api = '52db8feb6a2445049b2744c7a9223a05';
 //format the data
 //echo '<pre>' + </pre>;
 
-function toGetDataTMBD($request, $api, $params) {
+function toGetDataTMBD($request, $api, $params)
+{
     // Inizializza la sessione cURL
     $ch = curl_init();
 
@@ -33,7 +34,6 @@ function toGetDataTMBD($request, $api, $params) {
 
     // Chiude la sessione cURL
     curl_close($ch);
-
 
     // Decodifica la risposta JSON
     $data = json_decode($response, true);

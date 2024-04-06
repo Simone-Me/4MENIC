@@ -30,7 +30,7 @@ for ($i=1; $i <= $total_pages; $i++) :
     'release_date.gte' => $yesterday,
     'release_date.lte' => $today,
     'with_release_type' => 3|2,
-    'sort_by' => 'release_date.desc'
+    'sort_by' => 'release_date.desc'  
   );
   
   $data2 = toGetDataTMBD($request5, $api, $params2);
@@ -65,33 +65,31 @@ $date_fr = date('j F, Y', strtotime($movie_filtered["release_date"]));
 ?>
 
 <div class="movie-card">
-    <?php 
+<?php 
 // ----@TODO-------------
 //LE IF METTRE AU 1ER FOREACH POUR GARDER MOINS DE DONNEES
 //----------------
 if($movie_filtered["poster_path"] == "") { ?>
-    <img class="card-image" src="Images/Poster_not_available.jpg" alt="Card image cap">
-    <?php } else { ?>
-    <img class="card-image" src="https://image.tmdb.org/t/p/original/<?=$movie_filtered["poster_path"]?>"
-        alt="Card image cap">
-    <?php }?>
-    <div class="movie-info">
-        <h5 class="card-title"><?=$movie_filtered["title"]?></h5>
-        <!-- <p class="card-text text-wrap"><?=$movie_filtered["overview"]?></p> -->
-        <p class="card-text"><small class="text-muted">Sortie le <?=$date_fr?></small></p>
-        <p class="card-text"><small class="text-muted"><?=round($movie_filtered["vote_average"], 2)?> / 10 de
-                <?=round($movie_filtered["vote_count"], 2)?> votes</small></p>
-        <div class="buttom-card">
-            <a href="info_movie.php?id=<?=$movie_filtered["id"]?>"><i class="bi bi-info-circle"></i></a>
-            <a href="ticket.php?id=<?=$movie_filtered["id"]?>"><i class="bi bi-ticket-perforated"></i></a>
-        </div>
+  <img class="card-image" src="Images/Poster_not_available.jpg" alt="Card image cap">
+      <?php } else { ?>
+<img class="card-image" src="https://image.tmdb.org/t/p/original/<?=$movie_filtered["poster_path"]?>" alt="Card image cap">
+<?php }?>
+  <div class="movie-info">
+  <h5 class="card-title"><?=$movie_filtered["title"]?></h5>
+    <!-- <p class="card-text text-wrap"><?=$movie_filtered["overview"]?></p> -->
+    <p class="card-text"><small class="text-muted">Sortie le <?=$date_fr?></small></p>
+    <p class="card-text"><small class="text-muted"><?=round($movie_filtered["vote_average"], 2)?> / 10 de <?=round($movie_filtered["vote_count"], 2)?> votes</small></p>
+    <div class="buttom-card">
+      <a href="info_movie.php?id=<?=$movie_filtered["id"]?>"><i class="bi bi-info-circle"></i></a>
+      <a href="ticket.php?id=<?=$movie_filtered["id"]?>"><i class="bi bi-ticket-perforated"></i></a>
     </div>
+  </div>
 </div>
 
 <?php endforeach;
 echo "</div>";
       } elseif($filter === "popular") { ?>
-<div class="m-5">
-    <h1 class="text-light">Work in progress ...</h1>
-</div>
-<?php }
+        <div class="m-5">
+        <h1 class="text-light">Work in progress ...</h1>
+        </div>
+     <?php }
