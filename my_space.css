@@ -86,6 +86,7 @@ body {
   border-radius: 1px;
   border: 1px solid #ccc;
   font-family: inherit;
+  box-shadow: 11px 11px 15px 0px rgba(0, 0, 0, 0.4);
 }
 
 .centerLogin h2 {

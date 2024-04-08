@@ -25,7 +25,7 @@ if (isset($_SESSION["messageError"])) {
         <input type="text" name="email" placeholder="Email*" required />
         <input type="password" name="password" placeholder="Password*" required />
         <input type="password" name="confPassword" placeholder="Confirmer le Password*" required />
-        <input type="button" name="next" class="next action-button" value="Next" />
+        <input type="button" name="next" class="next action-button" value="Apres" />
     </fieldset>
     <fieldset>
         <h2 class="fs-title">Complement informations</h2>
@@ -34,8 +34,8 @@ if (isset($_SESSION["messageError"])) {
         <input type="text" name="nom" placeholder="Nom*" required />
         <input type="text" name="phone" placeholder="téléphone" />
         <textarea name="description" placeholder="Info a retenir..."></textarea>
-        <input type="button" name="previous" class="previous action-button" value="Previous" />
-        <input type="button" name="next" class="next action-button" value="Next" />
+        <input type="button" name="previous" class="previous action-button" value="Avant" />
+        <input type="button" name="next" class="next action-button" value="Apres" />
     </fieldset>
     <fieldset>
         <h2 class="fs-title">Preferences de cinema</h2>
@@ -43,7 +43,7 @@ if (isset($_SESSION["messageError"])) {
         <input type="text" name="twitter" placeholder="Twitter" />
         <input type="text" name="facebook" placeholder="Facebook" />
         <input type="text" name="gplus" placeholder="Google Plus" />
-        <input type="button" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" name="previous" class="previous action-button" value="Avant" />
         <input type="submit" name="submit" class="submit action-button" value="Submit" />
     </fieldset>
 </form>
