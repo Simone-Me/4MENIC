@@ -4,13 +4,21 @@ include 'header.php';
 include 'api.php';
 ?>
 
-<body>
-    <header>
-        <span id="title">4MENIC</span>
-        <p class="slogan">Trouve ta place parmi les étoiles</p>
-    </header>
+<!-- this is a comment  -->
 
-    <?php
+<body>
+  <header>
+    <span id="title">4MENIC</span>
+    <p class="slogan">Trouve ta place parmi les étoiles</p>
+  </header>
+
+  <?php
+  if (isset($_SESSION["messageError"])) {
+    $message = $_SESSION['messageError'];
+    unset($_SESSION["messageError"]);
+    echo "<script>alert('$message');</script>";
+  }
+
   /*     $bdd = connect();
     $search = "SELECT nameCine from cinema";
     $result = $bdd->query($search);
@@ -80,29 +88,29 @@ include 'api.php';
         continue;
       } else {
   ?>
-    <div class="movie-card">
-        <?php if ($single["poster_path"] == "") { ?>
-        <img class="card-image" src="Images/Poster_not_available.jpg" alt="Card image cap">
-        <?php } else { ?>
-        <img class="card-image" src="https://image.tmdb.org/t/p/original/<?= $single["poster_path"] ?>"
-            alt="Card image cap">
-        <?php } ?>
-        <div class="movie-info">
+
+        <div class="movie-card">
+          <?php if ($single["poster_path"] == "") { ?>
+            <img class="card-image" src="Images/Poster_not_available.jpg" alt="Card image cap">
+          <?php } else { ?>
+            <img class="card-image" src="https://image.tmdb.org/t/p/original/<?= $single["poster_path"] ?>" alt="Card image cap">
+          <?php } ?>
+          <div class="movie-info">
             <h5 class="card-title"><?= $single["title"] ?></h5>
             <!-- <p class="card-text text-wrap"><?= $single["overview"] ?></p> -->
             <p class="card-text"><small class="text-muted">Sortie le <?= $date_fr ?></small></p>
             <p class="card-text"><small class="text-muted"><?= $single["vote_average"] ?> / 10 de
-                    <?= round($single["vote_count"], 2) ?> votes</small></p>
+                <?= round($single["vote_count"], 2) ?> votes</small></p>
             <div class="buttom-card">
-                <a href="info_movie.php?id=<?= $single["id"] ?>"><i class="bi bi-info-circle"></i></a>
-                <a href="ticket.php?id=<?= $single["id"] ?>"><i class="bi bi-ticket-perforated"></i></a>
+              <a href="info_movie.php?id=<?= $single["id"] ?>"><i class="bi bi-info-circle"></i></a>
+              <a href="ticket.php?id=<?= $single["id"] ?>"><i class="bi bi-ticket-perforated"></i></a>
             </div>
+          </div>
         </div>
-    </div>
-    <?php };
+  <?php };
     endforeach;
   endfor ?>
-    </div>
+  </div>
 </body>
 
 </html>

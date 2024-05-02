@@ -10,6 +10,7 @@ if (isset($_POST["email"])) {
     $telephone = $_POST["phone"];
     $prenom = $_POST["prenom"];
     $nom = $_POST["nom"];
+    $username = $_POST["username"];
 
 
     if ($password !== $confPassword) {
@@ -17,11 +18,11 @@ if (isset($_POST["email"])) {
         header('Location: subscription_user.php');
     } else {
         try {
-            $sql = $conn->prepare("INSERT INTO utilisateur (nom, prenom, password, email, telephone)
-        SELECT ?, ?, ?, ?, ?
+            $sql = $conn->prepare("INSERT INTO utilisateur (username, nom, prenom, password, email, telephone)
+        SELECT ?, ?, ?, ?, ?, ?
         WHERE NOT EXISTS (SELECT * FROM utilisateur WHERE email = ?)");
 
-            $sql->bind_param("ssssss", $nom, $prenom, $password, $email, $telephone, $email);
+            $sql->bind_param("sssssss", $username, $nom, $prenom, $password, $email, $telephone, $email);
             $sql->execute();
 
             if ($sql->affected_rows > 0) {

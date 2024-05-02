@@ -22,6 +22,7 @@ if (isset($_SESSION["messageError"])) {
     <fieldset>
         <h2 class="fs-title">Cration de l'utilisateur</h2>
         <h3 class="fs-subtitle">1er étape</h3>
+        <input type="text" name="username" placeholder="Username*" required />
         <input type="text" name="email" placeholder="Email*" required />
         <input type="password" name="password" placeholder="Password*" required />
         <input type="password" name="confPassword" placeholder="Confirmer le Password*" required />
@@ -30,8 +31,8 @@ if (isset($_SESSION["messageError"])) {
     <fieldset>
         <h2 class="fs-title">Complement informations</h2>
         <h3 class="fs-subtitle">On va surement pas le revendre...</h3>
-        <input type="text" name="prenom" placeholder="Prenom*" required />
-        <input type="text" name="nom" placeholder="Nom*" required />
+        <input type="text" name="prenom" placeholder="Prenom" />
+        <input type="text" name="nom" placeholder="Nom" />
         <input type="text" name="phone" placeholder="téléphone" />
         <textarea name="description" placeholder="Info a retenir..."></textarea>
         <input type="button" name="previous" class="previous action-button" value="Avant" />

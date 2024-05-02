@@ -26,6 +26,11 @@ for ($i = 0; $i < 10; $i++) {
         ${"imageLogin$i"} = "https://image.tmdb.org/t/p/original/" . $dataReserch["results"][$i]["poster_path"];
     }
 }
+if (isset($_SESSION["messageError"])) {
+    $message = $_SESSION['messageError'];
+    unset($_SESSION["messageError"]);
+    echo "<script>alert('$message');</script>";
+}
 
 ?>
 
@@ -36,11 +41,27 @@ for ($i = 0; $i < 10; $i++) {
         <div class="bottomLogin"
             style="--my-color-var3: url(<?= $imageLogin3 ?>); --my-color-var4: url(<?= $imageLogin4 ?>);"></div>
         <div class="centerLogin">
-            <h2>Connectez-vous</h2>
-            <input type="email" placeholder="email" />
-            <input type="password" placeholder="password" />
-            <a href="subscription_user.php" style="color: white;">Première Connexion</a>
-            <h2>&nbsp;</h2>
+            <div class="login-box">
+                <h2>Login</h2>
+                <form id="login-user" action="login_user.php" method="POST">
+                    <div class="user-box">
+                        <input type="text" name="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <a class="connexion" onclick="document.getElementById('login-user').submit()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Connexion
+                    </a>
+                    <a class="connexion" href="subscription_user.php" style="color: white;">1er fois</a>
+                </form>
+            </div>
         </div>
     </div>
 </body>
