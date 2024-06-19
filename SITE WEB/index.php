@@ -7,12 +7,12 @@ include 'api.php';
 <!-- this is a comment  -->
 
 <body>
-  <header>
-    <span id="title">4MENIC</span>
-    <p class="slogan">Trouve ta place parmi les étoiles</p>
-  </header>
+    <header>
+        <span id="title">4MENIC</span>
+        <p class="slogan">Trouve ta place parmi les étoiles</p>
+    </header>
 
-  <?php
+    <?php
   if (isset($_SESSION["messageError"])) {
     $message = $_SESSION['messageError'];
     unset($_SESSION["messageError"]);
@@ -82,35 +82,49 @@ include 'api.php';
     $total_pages = $data2['total_pages'];
 
     foreach ($data2["results"] as $single) :
+      $idFilm = $single['id'];
+      $titleFilm = $single['title'];
+      $sortieFilm = $single["release_date"];
 
-      $date_fr = date('j F, Y', strtotime($single["release_date"]));
-      if ($single["poster_path"] == "" && $single["vote_average"] == 0) {
+      if (($single["poster_path"] == "" && $single["vote_average"] == 0)) {
         continue;
       } else {
+
+        //IT ADD CINEMA MOVIE AT THE LIST FILM -- TO DO EVERY WEEK
+        /* try {
+          $sql = $conn->prepare("INSERT INTO film (idFilm, nomFilm, dateSortie)
+      VALUES ('" . $idFilm . "', '" . $titleFilm . "','" . $sortieFilm . "');");
+          $sql->execute();
+      } catch (\Throwable $th) {
+          echo $th->getMessage();
+      } */
+
+        $date_fr = date('j F, Y', strtotime($single["release_date"]));
   ?>
 
-        <div class="movie-card">
-          <?php if ($single["poster_path"] == "") { ?>
-            <img class="card-image" src="Images/Poster_not_available.jpg" alt="Card image cap">
-          <?php } else { ?>
-            <img class="card-image" src="https://image.tmdb.org/t/p/original/<?= $single["poster_path"] ?>" alt="Card image cap">
-          <?php } ?>
-          <div class="movie-info">
+    <div class="movie-card">
+        <?php if ($single["poster_path"] == "") { ?>
+        <img class="card-image" src="Images/Poster_not_available.jpg" alt="Card image cap">
+        <?php } else { ?>
+        <img class="card-image" src="https://image.tmdb.org/t/p/original/<?= $single["poster_path"] ?>"
+            alt="Card image cap">
+        <?php } ?>
+        <div class="movie-info">
             <h5 class="card-title"><?= $single["title"] ?></h5>
             <!-- <p class="card-text text-wrap"><?= $single["overview"] ?></p> -->
             <p class="card-text"><small class="text-muted">Sortie le <?= $date_fr ?></small></p>
             <p class="card-text"><small class="text-muted"><?= $single["vote_average"] ?> / 10 de
-                <?= round($single["vote_count"], 2) ?> votes</small></p>
+                    <?= round($single["vote_count"], 2) ?> votes</small></p>
             <div class="buttom-card">
-              <a href="info_movie.php?id=<?= $single["id"] ?>"><i class="bi bi-info-circle"></i></a>
-              <a href="ticket.php?id=<?= $single["id"] ?>"><i class="bi bi-ticket-perforated"></i></a>
+                <a href="info_movie.php?id=<?= $single["id"] ?>"><i class="bi bi-info-circle"></i></a>
+                <a href="ticket.php?id=<?= $single["id"] ?>"><i class="bi bi-ticket-perforated"></i></a>
             </div>
-          </div>
         </div>
-  <?php };
+    </div>
+    <?php };
     endforeach;
   endfor ?>
-  </div>
+    </div>
 </body>
 
 </html>
