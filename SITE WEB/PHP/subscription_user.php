@@ -49,4 +49,4 @@ if (isset($_SESSION["messageError"])) {
     </fieldset>
 </form>
 
-<script src="sub.js"></script>
+<script src="/4MENIC/PHP/sub.js"></script>

@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <title>4MENIC</title>
-    <link rel="icon" type="image/x-icon" href="Images/logo_4.png">
+    <link rel="icon" type="image/x-icon" href="./PHP/Images/logo_4.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,16 +35,16 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="my_space.css">
-    <link rel="stylesheet/less" type="text/css" href="flip.scss" />
+    <link rel="stylesheet" href="/4MENIC/PHP/index.css">
+    <link rel="stylesheet" href="/4MENIC/PHP/my_space.css">
+    <link rel="stylesheet/less" type="text/css" href="/4MENIC/PHP/flip.scss" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 </head>
 
 <nav class="navbar menu navbar-expand-lg navbar-light bg-light">
     <!-- <a href="index.php" ><img id="logo" src="Images/scratch/icon_4MENIC_op.png" alt="logo"></a> -->
-    <a class="navbar-brand" href="index.php">4NEMIC</a>
+    <a class="navbar-brand" href="/4MENIC/index.php">4NEMIC</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="cinema.php">SALLE DE CINEMA</a>
+                <a class="nav-link" href="/4MENIC/PHP/cinema.php">SALLE DE CINEMA</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -60,26 +60,37 @@
                     FILTRE
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="my_space.php">mes cinémas préférés</a>
+                    <a class="dropdown-item" href="/4MENIC/PHP/my_space.php">mes cinémas préférés</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="filter_movie.php?filter=last_out">derniers sortis</a>
-                    <a class="dropdown-item" href="filter_movie.php?filter=popular">notoriété</a>
+                    <a class="dropdown-item" href="/4MENIC/PHP/filter_movie.php?filter=last_out">derniers sortis</a>
+                    <a class="dropdown-item" href="/4MENIC/PHP/filter_movie.php?filter=popular">notoriété</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="soon.php">PROCHAINEMENT</a>
+                <a class="nav-link" href="/4MENIC/PHP/soon.php">PROCHAINEMENT</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">ALMANACH</a>
             </li>
         </ul>
-        <form class="d-flex" method="POST" action="search_movie.php" role="search">
+        <form class="d-flex" method="POST" action="/4MENIC/PHPsearch_movie.php" role="search">
             <input class="form-control me-2" type="search" placeholder="Cherche un film" aria-label="Search"
                 name="search_movie">
             <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
         </form>
         <div>
-            <a class="m-2" href="my_space.php"><i class="bi bi-person-workspace"></i></a>
+            <a class="m-2" href="/4MENIC/PHP/my_space.php"><i class="bi bi-person-workspace"></i></a>
+            <p>
+                <?php if (isset($_SESSION["user"])) {
+                    echo $_SESSION["userName"];
+                } else {
+                    echo "connectez vous ici";
+                } ?>
+            </p>
+        </div>
+        <div><?php if (isset($_SESSION["user"])) { ?>
+            <a class="m-2" href="/4MENIC/PHP/logout.php"><i class="bi bi-box-arrow-right"></i>Logout</a>
+            <?php } ?>
         </div>
     </div>
 </nav>

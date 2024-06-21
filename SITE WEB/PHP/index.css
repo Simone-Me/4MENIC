@@ -5,7 +5,7 @@
 }
 
 html body {
-  background-image: url(Images/stars.jpg);
+  background-image: url(../Images/stars.jpg);
   background-repeat: no-repeat;
   background-size: 95% 95%;
   background-attachment: fixed;
