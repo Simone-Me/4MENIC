@@ -43,7 +43,7 @@ if (isset($_SESSION["user"])) {
             echo "<script>alert('$message');</script>";
         } ?>
 
-            <form id="bookingFilm" action="booking2.php" method="post" style="margin: 5vw; color: white;">
+            <form id="booking1" action="booking2.php" method="post" style="margin: 8.7vw; color: white;">
                 <h1>Réservation pour : <?= $film["nomFilm"] ?></h1>
                 <div class="form-group">
                     <label for="cinemaSelect">Cinema associés</label>

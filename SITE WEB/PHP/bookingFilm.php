@@ -8,11 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numberOfSeats = isset($_POST['placeCine']) ? (int)$_POST['placeCine'] : "";
     $isBookingConfirmed = isset($_POST['acceptBookingCine']) ? true : false;
     $today = date("Y-m-d");
-    $idSeance = "";
     $user = $_SESSION["user"];
+    echo $_SESSION['cinemaBooking'] . $_SESSION['roomaBooking'] . $_SESSION['id_movie'];
 
     try {
-        $sqlRoom = "SELECT * FROM seance NATURAL JOIN salle, cinema, film WHERE nomCine = ? AND nomSalle = ? AND film.idFilm = ?";
+        $sqlRoom = "SELECT * FROM seance NATURAL JOIN salle NATURAL JOIN cinema NATURAL JOIN  film WHERE nomCine = ? AND nomSalle = ? AND film.idFilm = ?";
         $stmt_user = $conn->prepare($sqlRoom);
         $stmt_user->bind_param("sss", $_SESSION["cinemaBooking"], $_SESSION["roomaBooking"], $_SESSION["id_movie"]);
         $stmt_user->execute();
@@ -20,6 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result_user->num_rows > 0) {
             $row_seance = $result_user->fetch_assoc();
+            echo "<pre>";
+            var_dump($row_seance);
+            echo "</pre>";
             $idSeance = $row_seance['idSeance'];
             echo $idSeance;
         }
@@ -31,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         $sqlAddTicket = "INSERT INTO ticket (nbPlace, dateAchat, idSeance, idUser) VALUES (?,?,?,?)";
+        echo $sqlAddTicket;
+        var_dump($idSeance);
         $sqlTicket = $conn->prepare($sqlAddTicket);
         $sqlTicket->bind_param("ssss", $numberOfSeats, $today, $idSeance, $user);
 
