@@ -25,10 +25,7 @@ include 'api.php'
 
         foreach ($cinema as $single) :
             //----------@todo--------------------------------
-            //DO A REQUETTE SQL TO COLLECT THE DATA IN MYPHPADMIN,
-            //CREATE ADMIN AND PRIVATE THE ACCESS TO MODIFY THE DATA
-            //CREATE A SPACE WHERE SET THE PROGRAMMATION OF THE MOVIE
-            //PANIER FOR THE TICKETS
+            //
             //------------------------------
         ?>
             <tbody>

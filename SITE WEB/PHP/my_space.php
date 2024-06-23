@@ -1,4 +1,5 @@
 <?php
+
 include 'conf.php';
 include 'header.php';
 include 'api.php';
@@ -31,37 +32,41 @@ if (isset($_SESSION["messageError"])) {
     unset($_SESSION["messageError"]);
     echo "<script>alert('$message');</script>";
 }
+if (isset($_SESSION["user"])) { ?>
+    <div style="margin: 10vw;">
+        <h1 style="color: white;">Vous etes bien connecté</h1>
+        <a class="connexion" href="/4MENIC/index.php" style="color: white;">Accueil</a>
+    </div>
+<?php
+} else { ?>
 
-?>
-
-<body>
-    <div class="containerLogin" onclick="onclick">
-        <div class="topLogin"
-            style="--my-color-var1: url(<?= $imageLogin1 ?>); --my-color-var2: url(<?= $imageLogin2 ?>);"></div>
-        <div class="bottomLogin"
-            style="--my-color-var3: url(<?= $imageLogin3 ?>); --my-color-var4: url(<?= $imageLogin4 ?>);"></div>
-        <div class="centerLogin">
-            <div class="login-box">
-                <h2>Login</h2>
-                <form id="login-user" action="login_user.php" method="POST">
-                    <div class="user-box">
-                        <input type="text" name="username" required>
-                        <label>Username</label>
-                    </div>
-                    <div class="user-box">
-                        <input type="password" name="password" required>
-                        <label>Password</label>
-                    </div>
-                    <a class="connexion" onclick="document.getElementById('login-user').submit()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Connexion
-                    </a>
-                    <a class="connexion" href="subscription_user.php" style="color: white;">1er fois</a>
-                </form>
+    <body>
+        <div class="containerLogin" onclick="onclick">
+            <div class="topLogin" style="--my-color-var1: url(<?= $imageLogin1 ?>); --my-color-var2: url(<?= $imageLogin2 ?>);"></div>
+            <div class="bottomLogin" style="--my-color-var3: url(<?= $imageLogin3 ?>); --my-color-var4: url(<?= $imageLogin4 ?>);"></div>
+            <div class="centerLogin">
+                <div class="login-box">
+                    <h2>Login</h2>
+                    <form id="login-user" action="login_user.php" method="POST">
+                        <div class="user-box">
+                            <input type="text" name="username" required>
+                            <label>Username</label>
+                        </div>
+                        <div class="user-box">
+                            <input type="password" name="password" required>
+                            <label>Password</label>
+                        </div>
+                        <a class="connexion" onclick="document.getElementById('login-user').submit()">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Connexion
+                        </a>
+                        <a class="connexion" href="subscription_user.php" style="color: white;">1er fois</a>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
+<?php }

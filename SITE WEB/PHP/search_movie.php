@@ -74,27 +74,26 @@ foreach ($dataReserch["results"] as $single) :
     continue;
   } else {
 ?>
-<div class="movie-card">
-    <?php if ($single["poster_path"] == "" || $single["poster_path"] == NULL) { ?>
-    <img class="card-image" src="Images/Poster_not_available.jpg" alt="Card image cap">
-    <?php } else { ?>
-    <img class="card-image" src="https://image.tmdb.org/t/p/original/<?= $single["poster_path"] ?>"
-        alt="Card image cap">
-    <?php } ?>
-    <div class="card-body">
+    <div class="movie-card">
+      <?php if ($single["poster_path"] == "" || $single["poster_path"] == NULL) { ?>
+        <img class="card-image" src="Images/Poster_not_available.jpg" alt="Card image cap">
+      <?php } else { ?>
+        <img class="card-image" src="https://image.tmdb.org/t/p/original/<?= $single["poster_path"] ?>" alt="Card image cap">
+      <?php } ?>
+      <div class="card-body">
         <div class="movie-info">
-            <h5 class="card-title"><?= $single["title"] ?></h5>
-            <p class="card-text text-wrap"><?= $single["overview"] ?></p>
-            <p class="card-text"><small class="text-muted">Sortie le <?= $date_fr ?></small></p>
-            <p class="card-text"><small class="text-muted"><?= $single["vote_average"] ?> / 10 de
-                    <?= round($single["vote_count"], 2) ?> votes</small></p>
-            <div class="buttom-card">
-                <a href="info_movie.php?id=<?= $single["id"] ?>"><i class="bi bi-info-circle"></i></a>
-                <a href="ticket.php?id=<?= $single["id"] ?>"><i class="bi bi-ticket-perforated"></i></a>
-            </div>
+          <h5 class="card-title"><?= $single["title"] ?></h5>
+          <p class="card-text text-wrap"><?= $single["overview"] ?></p>
+          <p class="card-text"><small class="text-muted">Sortie le <?= $date_fr ?></small></p>
+          <p class="card-text"><small class="text-muted"><?= $single["vote_average"] ?> / 10 de
+              <?= round($single["vote_count"], 2) ?> votes</small></p>
+          <div class="buttom-card">
+            <a href="info_movie.php?id=<?= $single["id"] ?>"><i class="bi bi-info-circle"></i></a>
+            <a href="ticket.php?id=<?= $single["id"] ?>"><i class="bi bi-ticket-perforated"></i></a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 <?php };
 endforeach; ?>
 </div>

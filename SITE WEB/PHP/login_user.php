@@ -18,10 +18,12 @@ if (isset($_POST["username"])) {
             unset($_SESSION["messageError"]);
             $_SESSION["user"] = $user["idUser"];
             $_SESSION["userName"] = $user["username"];
-            header('Location: ../index.php');
+            header('Location: /4MENIC/index.php');
+            exit();
         } else {
             $_SESSION["messageError"] = "Erreur, username ou/et password erronés";
-            header('Location: my_space.php');
+            header('Location: /4MENIC/PHP/my_space.php');
+            exit();
         }
     } catch (Exception $e) {
         echo $e->getMessage();

@@ -11,7 +11,7 @@ if (isset($_SESSION["messageError"])) {
 }
 ?>
 
-<link rel="stylesheet" href="subscription_user.css">
+<link rel="stylesheet" href="/4MENIC/CSS/subscription_user.css">
 
 <form id="msform" action="add_user.php" method="post">
     <ul id="progressbar">

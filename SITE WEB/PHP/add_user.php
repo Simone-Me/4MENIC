@@ -14,8 +14,9 @@ if (isset($_POST["email"])) {
 
 
     if ($password !== $confPassword) {
-        $_SESSION["messageError"] = "Dude, try again and insert the same password...";
+        $_SESSION["messageError"] = "Mots de passe ou utilisateurs erronées";
         header('Location: subscription_user.php');
+        exit();
     } else {
         try {
             $sql = $conn->prepare("INSERT INTO utilisateur (username, nom, prenom, password, email, telephone)
@@ -28,9 +29,11 @@ if (isset($_POST["email"])) {
             if ($sql->affected_rows > 0) {
                 unset($_SESSION["messageError"]);
                 header('Location: my_space.php');
+                exit();
             } else {
                 $_SESSION["messageError"] = "Erreur, Utilisateur déjà existant";
                 header('Location: subscription_user.php');
+                exit();
             }
         } catch (Exception $e) {
             echo $e->getMessage();

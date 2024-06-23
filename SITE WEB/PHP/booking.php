@@ -4,6 +4,7 @@ include 'header.php';
 include 'api.php';
 
 $id_movie = $_GET["id"];
+$_SESSION["id_movie"] = $id_movie;
 
 if (isset($_SESSION["user"])) {
 
@@ -12,14 +13,15 @@ if (isset($_SESSION["user"])) {
     $sql->execute();
     $result = $sql->get_result(); // get the mysqli result
     $film = $result->fetch_assoc();
+    $_SESSION["filmTitle"] = $film["nomFilm"];
 
     try {
         $sql2 = $conn->prepare("SELECT DISTINCT * FROM seance NATURAL JOIN salle NATURAL JOIN cinema WHERE idFilm = ?");
         $sql2->bind_param("s", $id_movie);
         $sql2->execute();
         $result2 = $sql2->get_result(); // get the mysqli result
-    } catch (\Throwable $th) {
-        echo $th->getMessage();
+    } catch (Exception $e) {
+        echo $e->getMessage();
     }
     $cinemaNames = [];
     $roomNames = [];
@@ -31,52 +33,33 @@ if (isset($_SESSION["user"])) {
         $horaires[] = $row['horaire'];
     }
 
-    if ($cinemaNames == null || $cinemaNames == "") {
-?> <h1>Ce film n'est pas ou plus disponible dans nos cinema partenariat</h1>
-<?php } else { ?>
-<form id="bookingFilm" action="bookingFilm.php" method="post">
-    <h1>Réservation pour : <?= $film["nomFilm"] ?></h1>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Cinema associés</label>
-        <select class="form-control">
-            <?php
-                    foreach ($cinemaNames as $cinema) {
-                    ?>
-            <option><?= $cinema ?></option>
-            <?php } ?>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Salle de cinema</label>
-        <select class="form-control">
-            <?php
-                    foreach ($roomNames as $room) {
-                    ?>
-            <option><?= $room ?></option>
-            <?php } ?>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Horaire</label>
-        <select class="form-control">
-            <?php
-                    foreach ($horaires as $hour) {
-                    ?>
-            <option><?= $hour ?></option>
-            <?php } ?>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Nombres de place</label>
-        <input type="number" id="tentacles" name="tentacles" min="1" max="10" />
-    </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Je suis sure de mon choix</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Reserver</button>
-</form>
-<?php }
+    if ($cinemaNames == null || $cinemaNames == "") { ?>
+        <div class="m-5">
+            <h1 style="color: white;">Ce film n'est pas ou plus disponible dans nos cinema partenariat</h1>
+        <?php } else {
+        if (isset($_SESSION["messageErrorFilm"])) {
+            $message = $_SESSION['messageErrorFilm'];
+            unset($_SESSION["messageErrorFilm"]);
+            echo "<script>alert('$message');</script>";
+        } ?>
+
+            <form id="bookingFilm" action="booking2.php" method="post" style="margin: 5vw; color: white;">
+                <h1>Réservation pour : <?= $film["nomFilm"] ?></h1>
+                <div class="form-group">
+                    <label for="cinemaSelect">Cinema associés</label>
+                    <select class="form-control" name="cinema" required>
+                        <?php
+                        foreach ($cinemaNames as $cinema) {
+                        ?>
+                            <option value="<?= $cinema ?>"><?= $cinema ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Continuer vers la salle</button>
+            </form>
+
+        <?php }
 } else { ?>
-<a href="my_space.php">Connectez-vous pour réserver une séance</a>
-<?php }
+        <a href="my_space.php">Connectez-vous pour réserver une séance</a>
+        </div>
+    <?php }
